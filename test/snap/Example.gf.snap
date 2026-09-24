@@ -1,0 +1,456 @@
+>--# -path=.:../abstract:../common:prelude
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.gf meta.preprocessor.gf
+>
+>{- A small abstract/concrete pair exercising most of the grammar.
+#^^ source.gf comment.block.gf punctuation.definition.comment.begin.gf
+#  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.gf comment.block.gf
+>   Block comments can span lines. -}
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.gf comment.block.gf
+#                                  ^^ source.gf comment.block.gf punctuation.definition.comment.end.gf
+>
+>abstract Food = {
+#^^^^^^^^ source.gf keyword.module.gf
+#        ^ source.gf
+#         ^^^^ source.gf entity.name.type.module.gf
+#             ^ source.gf
+#              ^ source.gf keyword.operator.gf
+#               ^^^ source.gf
+>  flags startcat = Comment ;
+#^^ source.gf
+#  ^^^^^ source.gf keyword.judgement.gf
+#       ^^^^^^^^^^ source.gf
+#                 ^ source.gf keyword.operator.gf
+#                  ^^^^^^^^^ source.gf
+#                           ^ source.gf punctuation.separator.gf
+>  cat
+#^^ source.gf
+#  ^^^ source.gf keyword.judgement.gf
+>    Comment ; Item ; Kind ; Quality ;
+#^^^^^^^^^^^^ source.gf
+#            ^ source.gf punctuation.separator.gf
+#             ^^^^^^ source.gf
+#                   ^ source.gf punctuation.separator.gf
+#                    ^^^^^^ source.gf
+#                          ^ source.gf punctuation.separator.gf
+#                           ^^^^^^^^^ source.gf
+#                                    ^ source.gf punctuation.separator.gf
+>  fun
+#^^ source.gf
+#  ^^^ source.gf keyword.judgement.gf
+>    Pred : Item -> Quality -> Comment ;
+#^^^^^^^^^ source.gf
+#         ^ source.gf keyword.operator.gf
+#          ^^^^^^ source.gf
+#                ^^ source.gf keyword.operator.gf
+#                  ^^^^^^^^^ source.gf
+#                           ^^ source.gf keyword.operator.gf
+#                             ^^^^^^^^^ source.gf
+#                                      ^ source.gf punctuation.separator.gf
+>    This, That : Kind -> Item ;
+#^^^^^^^^ source.gf
+#        ^ source.gf punctuation.separator.gf
+#         ^^^^^^ source.gf
+#               ^ source.gf keyword.operator.gf
+#                ^^^^^^ source.gf
+#                      ^^ source.gf keyword.operator.gf
+#                        ^^^^^^ source.gf
+#                              ^ source.gf punctuation.separator.gf
+>    Very : Quality -> Quality ;
+#^^^^^^^^^ source.gf
+#         ^ source.gf keyword.operator.gf
+#          ^^^^^^^^^ source.gf
+#                   ^^ source.gf keyword.operator.gf
+#                     ^^^^^^^^^ source.gf
+#                              ^ source.gf punctuation.separator.gf
+>    Wine', Cheese : Kind ;
+#^^^^^^^^^ source.gf
+#         ^ source.gf punctuation.separator.gf
+#          ^^^^^^^^ source.gf
+#                  ^ source.gf keyword.operator.gf
+#                   ^^^^^^ source.gf
+#                         ^ source.gf punctuation.separator.gf
+>    Warm : Quality ;
+#^^^^^^^^^ source.gf
+#         ^ source.gf keyword.operator.gf
+#          ^^^^^^^^^ source.gf
+#                   ^ source.gf punctuation.separator.gf
+>}
+#^^ source.gf
+>
+>concrete FoodEng of Food = open Prelude, (R = ResEng) in {
+#^^^^^^^^ source.gf keyword.module.gf
+#        ^ source.gf
+#         ^^^^^^^ source.gf entity.name.type.module.gf
+#                ^ source.gf
+#                 ^^ source.gf keyword.module.gf
+#                   ^ source.gf
+#                    ^^^^ source.gf entity.other.inherited-class.gf
+#                        ^ source.gf
+#                         ^ source.gf keyword.operator.gf
+#                          ^ source.gf
+#                           ^^^^ source.gf keyword.module.gf
+#                               ^^^^^^^^ source.gf
+#                                       ^ source.gf punctuation.separator.gf
+#                                        ^^^^ source.gf
+#                                            ^ source.gf keyword.operator.gf
+#                                             ^^^^^^^^^ source.gf
+#                                                      ^^ source.gf keyword.other.gf
+#                                                        ^^^ source.gf
+>  lincat
+#^^ source.gf
+#  ^^^^^^ source.gf keyword.judgement.gf
+>    Comment, Quality = SS ;
+#^^^^^^^^^^^ source.gf
+#           ^ source.gf punctuation.separator.gf
+#            ^^^^^^^^^ source.gf
+#                     ^ source.gf keyword.operator.gf
+#                      ^^^^ source.gf
+#                          ^ source.gf punctuation.separator.gf
+>    Kind = {s : Number => Str} ;
+#^^^^^^^^^ source.gf
+#         ^ source.gf keyword.operator.gf
+#          ^^^^ source.gf
+#              ^ source.gf keyword.operator.gf
+#               ^^^^^^^^ source.gf
+#                       ^^ source.gf keyword.operator.gf
+#                         ^ source.gf
+#                          ^^^ source.gf support.type.gf
+#                             ^^ source.gf
+#                               ^ source.gf punctuation.separator.gf
+>    Item = {s : Str ; n : Number} ;
+#^^^^^^^^^ source.gf
+#         ^ source.gf keyword.operator.gf
+#          ^^^^ source.gf
+#              ^ source.gf keyword.operator.gf
+#               ^ source.gf
+#                ^^^ source.gf support.type.gf
+#                   ^ source.gf
+#                    ^ source.gf punctuation.separator.gf
+#                     ^^^ source.gf
+#                        ^ source.gf keyword.operator.gf
+#                         ^^^^^^^^^ source.gf
+#                                  ^ source.gf punctuation.separator.gf
+>  lin
+#^^ source.gf
+#  ^^^ source.gf keyword.judgement.gf
+>    Pred item quality = ss (item.s ++ copula ! item.n ++ quality.s) ;
+#^^^^^^^^^^^^^^^^^^^^^^ source.gf
+#                      ^ source.gf keyword.operator.gf
+#                       ^^^^^^^^^ source.gf
+#                                ^ source.gf keyword.operator.gf
+#                                 ^^ source.gf
+#                                   ^^ source.gf keyword.operator.gf
+#                                     ^^^^^^^^ source.gf
+#                                             ^ source.gf keyword.operator.gf
+#                                              ^^^^^ source.gf
+#                                                   ^ source.gf keyword.operator.gf
+#                                                    ^^ source.gf
+#                                                      ^^ source.gf keyword.operator.gf
+#                                                        ^^^^^^^^ source.gf
+#                                                                ^ source.gf keyword.operator.gf
+#                                                                 ^^^ source.gf
+#                                                                    ^ source.gf punctuation.separator.gf
+>    This = det Sg "this" ;
+#^^^^^^^^^ source.gf
+#         ^ source.gf keyword.operator.gf
+#          ^^^^^^^^ source.gf
+#                  ^ source.gf string.quoted.double.gf punctuation.definition.string.begin.gf
+#                   ^^^^ source.gf string.quoted.double.gf
+#                       ^ source.gf string.quoted.double.gf punctuation.definition.string.end.gf
+#                        ^ source.gf
+#                         ^ source.gf punctuation.separator.gf
+>    That = det Sg "that" ;
+#^^^^^^^^^ source.gf
+#         ^ source.gf keyword.operator.gf
+#          ^^^^^^^^ source.gf
+#                  ^ source.gf string.quoted.double.gf punctuation.definition.string.begin.gf
+#                   ^^^^ source.gf string.quoted.double.gf
+#                       ^ source.gf string.quoted.double.gf punctuation.definition.string.end.gf
+#                        ^ source.gf
+#                         ^ source.gf punctuation.separator.gf
+>    Very q = ss ("very" ++ q.s) ;
+#^^^^^^^^^^^ source.gf
+#           ^ source.gf keyword.operator.gf
+#            ^^^^^ source.gf
+#                 ^ source.gf string.quoted.double.gf punctuation.definition.string.begin.gf
+#                  ^^^^ source.gf string.quoted.double.gf
+#                      ^ source.gf string.quoted.double.gf punctuation.definition.string.end.gf
+#                       ^ source.gf
+#                        ^^ source.gf keyword.operator.gf
+#                          ^^ source.gf
+#                            ^ source.gf keyword.operator.gf
+#                             ^^^ source.gf
+#                                ^ source.gf punctuation.separator.gf
+>    Wine' = regNoun "wine" ;
+#^^^^^^^^^^ source.gf
+#          ^ source.gf keyword.operator.gf
+#           ^^^^^^^^^ source.gf
+#                    ^ source.gf string.quoted.double.gf punctuation.definition.string.begin.gf
+#                     ^^^^ source.gf string.quoted.double.gf
+#                         ^ source.gf string.quoted.double.gf punctuation.definition.string.end.gf
+#                          ^ source.gf
+#                           ^ source.gf punctuation.separator.gf
+>    Cheese = regNoun "cheese" ;
+#^^^^^^^^^^^ source.gf
+#           ^ source.gf keyword.operator.gf
+#            ^^^^^^^^^ source.gf
+#                     ^ source.gf string.quoted.double.gf punctuation.definition.string.begin.gf
+#                      ^^^^^^ source.gf string.quoted.double.gf
+#                            ^ source.gf string.quoted.double.gf punctuation.definition.string.end.gf
+#                             ^ source.gf
+#                              ^ source.gf punctuation.separator.gf
+>    Warm = ss "warm" ;
+#^^^^^^^^^ source.gf
+#         ^ source.gf keyword.operator.gf
+#          ^^^^ source.gf
+#              ^ source.gf string.quoted.double.gf punctuation.definition.string.begin.gf
+#               ^^^^ source.gf string.quoted.double.gf
+#                   ^ source.gf string.quoted.double.gf punctuation.definition.string.end.gf
+#                    ^ source.gf
+#                     ^ source.gf punctuation.separator.gf
+>  param
+#^^ source.gf
+#  ^^^^^ source.gf keyword.judgement.gf
+>    Number = Sg | Pl ;
+#^^^^^^^^^^^ source.gf
+#           ^ source.gf keyword.operator.gf
+#            ^^^^ source.gf
+#                ^ source.gf keyword.operator.gf
+#                 ^^^^ source.gf
+#                     ^ source.gf punctuation.separator.gf
+>  oper
+#^^ source.gf
+#  ^^^^ source.gf keyword.judgement.gf
+>    det : Number -> Str -> {s : Number => Str} -> {s : Str ; n : Number} =
+#^^^^^^^^ source.gf
+#        ^ source.gf keyword.operator.gf
+#         ^^^^^^^^ source.gf
+#                 ^^ source.gf keyword.operator.gf
+#                   ^ source.gf
+#                    ^^^ source.gf support.type.gf
+#                       ^ source.gf
+#                        ^^ source.gf keyword.operator.gf
+#                          ^^^^ source.gf
+#                              ^ source.gf keyword.operator.gf
+#                               ^^^^^^^^ source.gf
+#                                       ^^ source.gf keyword.operator.gf
+#                                         ^ source.gf
+#                                          ^^^ source.gf support.type.gf
+#                                             ^^ source.gf
+#                                               ^^ source.gf keyword.operator.gf
+#                                                 ^^^^ source.gf
+#                                                     ^ source.gf keyword.operator.gf
+#                                                      ^ source.gf
+#                                                       ^^^ source.gf support.type.gf
+#                                                          ^ source.gf
+#                                                           ^ source.gf punctuation.separator.gf
+#                                                            ^^^ source.gf
+#                                                               ^ source.gf keyword.operator.gf
+#                                                                ^^^^^^^^^ source.gf
+#                                                                         ^ source.gf keyword.operator.gf
+>      \n,d,cn -> {s = d ++ cn.s ! n ; n = n} ;
+#^^^^^^ source.gf
+#      ^ source.gf keyword.operator.gf
+#       ^ source.gf
+#        ^ source.gf punctuation.separator.gf
+#         ^ source.gf
+#          ^ source.gf punctuation.separator.gf
+#           ^^^ source.gf
+#              ^^ source.gf keyword.operator.gf
+#                ^^^^ source.gf
+#                    ^ source.gf keyword.operator.gf
+#                     ^^^ source.gf
+#                        ^^ source.gf keyword.operator.gf
+#                          ^^^ source.gf
+#                             ^ source.gf keyword.operator.gf
+#                              ^^ source.gf
+#                                ^ source.gf keyword.operator.gf
+#                                 ^^^ source.gf
+#                                    ^ source.gf punctuation.separator.gf
+#                                     ^^^ source.gf
+#                                        ^ source.gf keyword.operator.gf
+#                                         ^^^^ source.gf
+#                                             ^ source.gf punctuation.separator.gf
+>    regNoun : Str -> {s : Number => Str} = \w -> {s = table {Sg => w ; _ => w + "s"}} ;
+#^^^^^^^^^^^^ source.gf
+#            ^ source.gf keyword.operator.gf
+#             ^ source.gf
+#              ^^^ source.gf support.type.gf
+#                 ^ source.gf
+#                  ^^ source.gf keyword.operator.gf
+#                    ^^^^ source.gf
+#                        ^ source.gf keyword.operator.gf
+#                         ^^^^^^^^ source.gf
+#                                 ^^ source.gf keyword.operator.gf
+#                                   ^ source.gf
+#                                    ^^^ source.gf support.type.gf
+#                                       ^^ source.gf
+#                                         ^ source.gf keyword.operator.gf
+#                                          ^ source.gf
+#                                           ^ source.gf keyword.operator.gf
+#                                            ^^ source.gf
+#                                              ^^ source.gf keyword.operator.gf
+#                                                ^^^^ source.gf
+#                                                    ^ source.gf keyword.operator.gf
+#                                                     ^ source.gf
+#                                                      ^^^^^ source.gf keyword.other.gf
+#                                                           ^^^^^ source.gf
+#                                                                ^^ source.gf keyword.operator.gf
+#                                                                  ^^^ source.gf
+#                                                                     ^ source.gf punctuation.separator.gf
+#                                                                      ^ source.gf
+#                                                                       ^ source.gf variable.language.wildcard.gf
+#                                                                        ^ source.gf
+#                                                                         ^^ source.gf keyword.operator.gf
+#                                                                           ^^^ source.gf
+#                                                                              ^ source.gf keyword.operator.gf
+#                                                                               ^ source.gf
+#                                                                                ^ source.gf string.quoted.double.gf punctuation.definition.string.begin.gf
+#                                                                                 ^ source.gf string.quoted.double.gf
+#                                                                                  ^ source.gf string.quoted.double.gf punctuation.definition.string.end.gf
+#                                                                                   ^^^ source.gf
+#                                                                                      ^ source.gf punctuation.separator.gf
+>    copula : Number => Str = table {Sg => "is" ; Pl => "are"} ;
+#^^^^^^^^^^^ source.gf
+#           ^ source.gf keyword.operator.gf
+#            ^^^^^^^^ source.gf
+#                    ^^ source.gf keyword.operator.gf
+#                      ^ source.gf
+#                       ^^^ source.gf support.type.gf
+#                          ^ source.gf
+#                           ^ source.gf keyword.operator.gf
+#                            ^ source.gf
+#                             ^^^^^ source.gf keyword.other.gf
+#                                  ^^^^^ source.gf
+#                                       ^^ source.gf keyword.operator.gf
+#                                         ^ source.gf
+#                                          ^ source.gf string.quoted.double.gf punctuation.definition.string.begin.gf
+#                                           ^^ source.gf string.quoted.double.gf
+#                                             ^ source.gf string.quoted.double.gf punctuation.definition.string.end.gf
+#                                              ^ source.gf
+#                                               ^ source.gf punctuation.separator.gf
+#                                                ^^^^ source.gf
+#                                                    ^^ source.gf keyword.operator.gf
+#                                                      ^ source.gf
+#                                                       ^ source.gf string.quoted.double.gf punctuation.definition.string.begin.gf
+#                                                        ^^^ source.gf string.quoted.double.gf
+#                                                           ^ source.gf string.quoted.double.gf punctuation.definition.string.end.gf
+#                                                            ^^ source.gf
+#                                                              ^ source.gf punctuation.separator.gf
+>    quote : Str = "say \"hi\"" ++ BIND ++ "!" ; -- escapes
+#^^^^^^^^^^ source.gf
+#          ^ source.gf keyword.operator.gf
+#           ^ source.gf
+#            ^^^ source.gf support.type.gf
+#               ^ source.gf
+#                ^ source.gf keyword.operator.gf
+#                 ^ source.gf
+#                  ^ source.gf string.quoted.double.gf punctuation.definition.string.begin.gf
+#                   ^^^^ source.gf string.quoted.double.gf
+#                       ^^ source.gf string.quoted.double.gf constant.character.escape.gf
+#                         ^^ source.gf string.quoted.double.gf
+#                           ^^ source.gf string.quoted.double.gf constant.character.escape.gf
+#                             ^ source.gf string.quoted.double.gf punctuation.definition.string.end.gf
+#                              ^ source.gf
+#                               ^^ source.gf keyword.operator.gf
+#                                 ^ source.gf
+#                                  ^^^^ source.gf support.constant.gf
+#                                      ^ source.gf
+#                                       ^^ source.gf keyword.operator.gf
+#                                         ^ source.gf
+#                                          ^ source.gf string.quoted.double.gf punctuation.definition.string.begin.gf
+#                                           ^ source.gf string.quoted.double.gf
+#                                            ^ source.gf string.quoted.double.gf punctuation.definition.string.end.gf
+#                                             ^ source.gf
+#                                              ^ source.gf punctuation.separator.gf
+#                                               ^ source.gf
+#                                                ^^ source.gf comment.line.double-dash.gf punctuation.definition.comment.gf
+#                                                  ^^^^^^^^ source.gf comment.line.double-dash.gf
+>    n2 : Int = 2 ;
+#^^^^^^^ source.gf
+#       ^ source.gf keyword.operator.gf
+#        ^ source.gf
+#         ^^^ source.gf support.type.gf
+#            ^ source.gf
+#             ^ source.gf keyword.operator.gf
+#              ^ source.gf
+#               ^ source.gf constant.numeric.gf
+#                ^ source.gf
+#                 ^ source.gf punctuation.separator.gf
+>    pl : Str -> Str = \x -> case x of {
+#^^^^^^^ source.gf
+#       ^ source.gf keyword.operator.gf
+#        ^ source.gf
+#         ^^^ source.gf support.type.gf
+#            ^ source.gf
+#             ^^ source.gf keyword.operator.gf
+#               ^ source.gf
+#                ^^^ source.gf support.type.gf
+#                   ^ source.gf
+#                    ^ source.gf keyword.operator.gf
+#                     ^ source.gf
+#                      ^ source.gf keyword.operator.gf
+#                       ^^ source.gf
+#                         ^^ source.gf keyword.operator.gf
+#                           ^ source.gf
+#                            ^^^^ source.gf keyword.other.gf
+#                                ^^^ source.gf
+#                                   ^^ source.gf keyword.module.gf
+#                                     ^^^ source.gf
+>      _ + "y" => init x + "ies" ;
+#^^^^^^ source.gf
+#      ^ source.gf variable.language.wildcard.gf
+#       ^ source.gf
+#        ^ source.gf keyword.operator.gf
+#         ^ source.gf
+#          ^ source.gf string.quoted.double.gf punctuation.definition.string.begin.gf
+#           ^ source.gf string.quoted.double.gf
+#            ^ source.gf string.quoted.double.gf punctuation.definition.string.end.gf
+#             ^ source.gf
+#              ^^ source.gf keyword.operator.gf
+#                ^^^^^^^^ source.gf
+#                        ^ source.gf keyword.operator.gf
+#                         ^ source.gf
+#                          ^ source.gf string.quoted.double.gf punctuation.definition.string.begin.gf
+#                           ^^^ source.gf string.quoted.double.gf
+#                              ^ source.gf string.quoted.double.gf punctuation.definition.string.end.gf
+#                               ^ source.gf
+#                                ^ source.gf punctuation.separator.gf
+>      _ => pre {"a" | "e" => x ; _ => x + "s"}
+#^^^^^^ source.gf
+#      ^ source.gf variable.language.wildcard.gf
+#       ^ source.gf
+#        ^^ source.gf keyword.operator.gf
+#          ^ source.gf
+#           ^^^ source.gf keyword.other.gf
+#              ^^ source.gf
+#                ^ source.gf string.quoted.double.gf punctuation.definition.string.begin.gf
+#                 ^ source.gf string.quoted.double.gf
+#                  ^ source.gf string.quoted.double.gf punctuation.definition.string.end.gf
+#                   ^ source.gf
+#                    ^ source.gf keyword.operator.gf
+#                     ^ source.gf
+#                      ^ source.gf string.quoted.double.gf punctuation.definition.string.begin.gf
+#                       ^ source.gf string.quoted.double.gf
+#                        ^ source.gf string.quoted.double.gf punctuation.definition.string.end.gf
+#                         ^ source.gf
+#                          ^^ source.gf keyword.operator.gf
+#                            ^^^ source.gf
+#                               ^ source.gf punctuation.separator.gf
+#                                ^ source.gf
+#                                 ^ source.gf variable.language.wildcard.gf
+#                                  ^ source.gf
+#                                   ^^ source.gf keyword.operator.gf
+#                                     ^^^ source.gf
+#                                        ^ source.gf keyword.operator.gf
+#                                         ^ source.gf
+#                                          ^ source.gf string.quoted.double.gf punctuation.definition.string.begin.gf
+#                                           ^ source.gf string.quoted.double.gf
+#                                            ^ source.gf string.quoted.double.gf punctuation.definition.string.end.gf
+#                                             ^^ source.gf
+>    } ;
+#^^^^^^ source.gf
+#      ^ source.gf punctuation.separator.gf
+>}
+#^^ source.gf
+>

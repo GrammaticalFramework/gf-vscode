@@ -5,24 +5,26 @@
     },
     "brackets": [
         ["{", "}"],
-        ["(", ")"],
-        ["<", ">"]
+        ["[", "]"],
+        ["(", ")"]
     ],
     "autoClosingPairs": [
-        ["{", "}"],
-        ["(", ")"],
-        ["<", ">"],
-        ["\"", "\""],
-        ["'", "'"]
+        { "open": "{", "close": "}" },
+        { "open": "[", "close": "]" },
+        { "open": "(", "close": ")" },
+        { "open": "\"", "close": "\"", "notIn": ["string", "comment"] }
     ],
     "surroundingPairs": [
         ["{", "}"],
+        ["[", "]"],
         ["(", ")"],
         ["<", ">"],
         ["\"", "\""],
         ["'", "'"]
     ],
-    "foldEndPattern": "^\\s*\\}|^\\s*\\]|^\\s*\\)",
-    "increaseIndentPattern": "(?x) \\{ [^}\"']* $ | \\[ [^\\]\"']* $ | \\( [^)\"']* $",
-    "decreaseIndentPattern": "(?x) ^ \\s* (\\s* /[*] .* [*]/ \\s*)* [}\\])]"
+    "wordPattern": "[^\\s`~!@#$%^&*()\\-=+\\[{\\]}\\\\|;:\",.<>/?]+",
+    "indentationRules": {
+        "increaseIndentPattern": "\\{[^}\"]*$|\\[[^\\]\"]*$|\\([^)\"]*$",
+        "decreaseIndentPattern": "^\\s*[}\\])]"
+    }
 }

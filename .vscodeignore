@@ -1,0 +1,7 @@
+test/**
+node_modules/**
+.github/**
+.gitignore
+CLAUDE.md
+*.vsix
+images/screenshot-*

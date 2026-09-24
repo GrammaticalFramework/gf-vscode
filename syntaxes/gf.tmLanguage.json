@@ -4,29 +4,35 @@
   "fileTypes": [
     "gf"
   ],
-  "firstLineMatch": "",
-  "foldingStartMarker": "{",
-  "foldingStopMarker": "}",
   "patterns": [
     {
-      "match": "\\b(abstract|concrete|interface|instance|resource|incomplete|of|with|open|in)\\b",
-      "name": "keyword.module.gf"
+      "match": "--#.*$",
+      "name": "meta.preprocessor.gf"
     },
     {
-      "match": "\\b(cat|fun|def|data|lincat|lin|lindef|linref|printname|printname|param|oper|flags)\\b",
-      "name": "keyword.judgement.gf"
+      "begin": "\\{-",
+      "end": "-\\}",
+      "name": "comment.block.gf",
+      "beginCaptures": {
+        "0": {
+          "name": "punctuation.definition.comment.begin.gf"
+        }
+      },
+      "endCaptures": {
+        "0": {
+          "name": "punctuation.definition.comment.end.gf"
+        }
+      }
     },
     {
-      "match": "\\b(table|pre|case|variants|let|in|where)\\b",
-      "name": "keyword.other.gf"
-    },
-    {
-      "match": "(=>|->|:|=|\\.|\\+|\\*|!|\\||\\\\)",
-      "name": "constant.gf"
-    },
-    {
-      "match": "(;|,)",
-      "name": "constant.gf"
+      "begin": "--",
+      "end": "$",
+      "name": "comment.line.double-dash.gf",
+      "beginCaptures": {
+        "0": {
+          "name": "punctuation.definition.comment.gf"
+        }
+      }
     },
     {
       "name": "string.quoted.double.gf",
@@ -34,24 +40,78 @@
       "end": "\"",
       "beginCaptures": {
         "0": {
-          "name": "punctuation.string.begin.gf"
+          "name": "punctuation.definition.string.begin.gf"
         }
       },
       "endCaptures": {
         "0": {
-          "name": "punctuation.string.end.gf"
+          "name": "punctuation.definition.string.end.gf"
+        }
+      },
+      "patterns": [
+        {
+          "match": "\\\\.",
+          "name": "constant.character.escape.gf"
+        }
+      ]
+    },
+    {
+      "match": "(?<![\\w'])(abstract|concrete|interface|instance|resource)\\s+([A-Za-z_][\\w']*)",
+      "captures": {
+        "1": {
+          "name": "keyword.module.gf"
+        },
+        "2": {
+          "name": "entity.name.type.module.gf"
         }
       }
     },
     {
-      "begin": "--",
-      "end": "$",
-      "name": "comment.line.gf"
+      "match": "(?<![\\w'])(of)\\s+([A-Za-z_][\\w']*)",
+      "captures": {
+        "1": {
+          "name": "keyword.module.gf"
+        },
+        "2": {
+          "name": "entity.other.inherited-class.gf"
+        }
+      }
     },
     {
-      "begin": "{-",
-      "end": "-}",
-      "name": "comment.block.gf"
+      "match": "(?<![\\w'])(abstract|concrete|interface|instance|resource|incomplete|of|with|open)(?![\\w'])",
+      "name": "keyword.module.gf"
+    },
+    {
+      "match": "(?<![\\w'])(cat|fun|def|data|lincat|lin|lindef|linref|printname|param|oper|flags)(?![\\w'])",
+      "name": "keyword.judgement.gf"
+    },
+    {
+      "match": "(?<![\\w'])(table|pre|case|variants|let|in|where|pattern|strs|transfer)(?![\\w'])",
+      "name": "keyword.other.gf"
+    },
+    {
+      "match": "(?<![\\w'])(Type|PType|Str|Strs|Tok|Int|Float|String)(?![\\w'])",
+      "name": "support.type.gf"
+    },
+    {
+      "match": "(?<![\\w'])(BIND|SOFT_BIND|SOFT_SPACE|CAPIT|ALL_CAPIT|nonExist)(?![\\w'])",
+      "name": "support.constant.gf"
+    },
+    {
+      "match": "(?<![\\w'])\\d+(\\.\\d+)?([eE][+-]?\\d+)?(?![\\w'])",
+      "name": "constant.numeric.gf"
+    },
+    {
+      "match": "(?<![\\w'])_(?![\\w'])",
+      "name": "variable.language.wildcard.gf"
+    },
+    {
+      "match": "\\+\\+|\\*\\*|&\\+|=>|->|[=:.+*!|\\\\@?$#<>-]",
+      "name": "keyword.operator.gf"
+    },
+    {
+      "match": "[;,]",
+      "name": "punctuation.separator.gf"
     }
   ]
 }
