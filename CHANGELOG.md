@@ -1,5 +1,8 @@
 # Change Log
 
+## Unreleased
+- Add file icon for `.gf` files
+
 ## 2.0.1
 - Update icon
 - Add screenshots to README
