@@ -3,14 +3,21 @@
   "displayName": "Grammatical Framework",
   "description": "Grammatical Framework language support for Visual Studio Code",
   "author": "John J. Camilleri",
-  "version": "2.0.1",
+  "version": "2.1.0",
   "publisher": "GrammaticalFramework",
+  "license": "MIT",
   "icon": "images/icon.png",
   "engines": {
-    "vscode": "^1.5.0"
+    "vscode": "^1.64.0"
   },
   "categories": [
     "Programming Languages"
+  ],
+  "keywords": [
+    "gf",
+    "grammatical framework",
+    "grammar",
+    "nlp"
   ],
   "repository": {
     "type": "git",
@@ -41,5 +48,14 @@
         "path": "./syntaxes/gf.tmLanguage.json"
       }
     ]
+  },
+  "scripts": {
+    "test": "npm run test:grammar && npm run test:config",
+    "test:grammar": "vscode-tmgrammar-test -g syntaxes/gf.tmLanguage.json 'test/grammar/*.gf'",
+    "test:snap": "vscode-tmgrammar-snap -g syntaxes/gf.tmLanguage.json 'test/snap/*.gf'",
+    "test:config": "node --test test/config.test.mjs"
+  },
+  "devDependencies": {
+    "vscode-tmgrammar-test": "^0.1.3"
   }
 }
